@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css?family=Source Sans Pro&display=swap');
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: small;
+    color: white;
+}
+body{
+    background-color: black;
+}
+/*captcha margin*/
+
+
+
+.main-wrapper{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.auth-code-wrapper{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.auth-code-allign{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.logo-section{
+    text-align: center;
+    width: 100%;
+    padding: 2%;
+}
+.logo{
+    width: 100px;;
+}
+.auth-code-section{
+    width: 53%;
+    padding: 5% 1%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+.auth-code-section h1{
+    margin: 5%;
+}
+.auth-code-instructions{
+    width: 35%;
+    padding: 5%;
+}
+.verify-btn{
+    border: 2px solid white;
+    background-color: red;
+    border-radius: 25px;
+    color: white;
+    padding: 1% 5%;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin: 2.5% 0 5%;
+    text-decoration: none;
+}
+.verify-btn:hover{
+     text-decoration: none;
+     color:white;
+    border: 2px solid lightgreen;
+}
+.auth-code-section .form-control{
+    padding: 0;
+    width: 24px;
+    background-color: #383838;
+    border: 2px solid #5f5f5f;
+    box-shadow: inset 0 0 10px #000000;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px!important;
+}
+.otp-bx{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.otp-bx input{
+
+    width: 10px;
+    font-size: 16px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    margin: 2px;
+    border: 2px solid #55525c;
+    background: #0b1230;
+    font-weight: bold;
+    color: #fff;
+    outline: none;
+    transition: all 0.1s;
+    
+}
+
+.label-data{
+    margin: 5% 0%;
+}
+.label-data label{
+    margin: 0px;
+    color: red;
+    font-weight: bold;
+}
+.label-data p{
+    font-size: large;
+    margin: 0px;
+}
