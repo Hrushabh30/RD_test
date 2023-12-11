@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <link href="https://imagine-boat.s3.amazonaws.com/support/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+
+    <link rel="stylesheet" href="/verify-style.css" />
+    <link rel="stylesheet" href="/verify-responsive.css" />
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <div class="auth-code-wrapper">
+        <div class="logo-section">
+          <img src="/rd-logo.png" class="logo" alt="logo" />
+        </div>
+
+        <div class="auth-code-section">
+          <form id="verificationForm" action="/verify" method="post" enctype="multipart/form-data">
+            
+            <h1 style="font-size: 36px">Product Authentication</h1>
+  
+
+            <div class="otp-bx">
+              <input type="text" maxlength="1" class="otp-input" name="otp1" id="otp1" pattern="[A-Z0-9]">
+              <input type="text" maxlength="1" class="otp-input" name="otp2" id="otp2" pattern="[A-Z0-9]">
+              <input type="text" maxlength="1" class="otp-input" name="otp3" id="otp3" pattern="[A-Z0-9]">
+              <input type="text" maxlength="1" class="otp-input" name="otp4" id="otp4" pattern="[A-Z0-9]">
+              <input type="text" maxlength="1" class="otp-input" name="otp5" id="otp5" pattern="[A-Z0-9]">
+              <input type="text" maxlength="1" class="otp-input" name="otp6" id="otp6" pattern="[A-Z0-9]">
+              <input type="text" maxlength="1" class="otp-input" name="otp7" id="otp7" pattern="[A-Z0-9]">
+              <input type="text" maxlength="1" class="otp-input" name="otp8" id="otp8" pattern="[A-Z0-9]">
+          
+            </div>
+            <!-- <input type="hidden" id="verificationCode" name="verificationCode"> -->
+            <div>
+              <button type="button" class="verify-btn" id="verify-code">VERIFY</button>
+            </div>
+            
+          </form>
+          <% if (verificationResult !== null) { %>
+            <div>
+              <p>Verification Result: <%= verificationResult %></p>
+            </div>
+          <% } %>
+        </div>
+        <div class="auth-code-instructions">
+          <h5>How do I verify my RD product?</h5>
+
+          <p>
+            Locate the QR code on the box and scan it with a QR code scanner
+          </p>
+          <br />
+          <img src="/rd-logo.png" class="logo" alt="logo" />
+        </div>
+      </div>
+      <div id="verificationResult"></div>
+
+        
+      </div>
+    </div>
+    <!-- <script defer>
+      document.getElementById('otp1').addEventListener('input', function() {
+        this.value = this.value.toUpperCase();
+      });
+      
+      document.getElementById('otp2').addEventListener('input', function() {
+        this.value = this.value.toUpperCase();
+      });
+      
+      document.getElementById('otp3').addEventListener('input', function() {
+        this.value = this.value.toUpperCase();
+      });
+
+      document.getElementById('otp4').addEventListener('input', function() {
+        this.value = this.value.toUpperCase();
+      });
+
+      document.getElementById('otp5').addEventListener('input', function() {
+        this.value = this.value.toUpperCase();
+      });
+
+      document.getElementById('otp6').addEventListener('input', function() {
+        this.value = this.value.toUpperCase();
+      });
+
+      document.getElementById('otp7').addEventListener('input', function() {
+        this.value = this.value.toUpperCase();
+      });
+
+      document.getElementById('otp8').addEventListener('input', function() {
+        this.value = this.value.toUpperCase();
+      });
+      
+      document.getElementById('verify-code').addEventListener('click', function() {
+        const otp1 = document.getElementById('otp1').value;
+        const otp2 = document.getElementById('otp2').value;
+        const otp3 = document.getElementById('otp3').value;
+        const otp4 = document.getElementById('otp4').value;
+        const otp5 = document.getElementById('otp5').value;
+        const otp6 = document.getElementById('otp6').value;
+        const otp7 = document.getElementById('otp7').value;
+        const otp8 = document.getElementById('otp8').value;
+      
+        // Ensure that the values are valid alphanumeric characters
+        const isValidAlphanumeric = (value) => /^[A-Z0-9]$/.test(value);
+      
+        if (!isValidAlphanumeric(otp1) || !isValidAlphanumeric(otp2) || !isValidAlphanumeric(otp3)) {
+          console.error('Invalid Alphanumeric characters');
+          return;
+        }
+    
+        console.log('Received OTPs:', otp1, otp2, otp3);
+    
+        // Create a FormData object to handle the form data
+        const formData = new FormData();
+        formData.append('otp1', otp1);
+        formData.append('otp2', otp2);
+        formData.append('otp3', otp3);
+        formData.append('otp4', otp4);
+        formData.append('otp5', otp5);
+        formData.append('otp6', otp6);
+        formData.append('otp7', otp7);
+        formData.append('otp8', otp8);
+    
+        console.log('Form Data:', formData);  // Add this line for additional logging
+    
+        // Use the Fetch API to submit the form data
+        fetch('/verify', {
+          method: 'POST',
+          body: formData,
+        })
+        .then(response => response.json())  // Parse the JSON response
+        .then(data => {
+          // Handle the response data as needed
+          console.log('Verification Result:', data);
+    
+          // Update the DOM with the verification result
+          document.getElementById('verificationResult').innerText = 'Verification Result: ' + data.verificationResult;
+        })
+        .catch(error => console.error('Error:', error));
+      });
+    </script> -->
+    <script defer>
+
+      const setInputValuesFromQuery = () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const codeParam = urlParams.get('code');
+    
+        // Check if the 'code' parameter is present
+        if (codeParam) {
+          // Split the code into individual characters
+          const codeCharacters = codeParam.split('');
+    
+          // Get the OTP input elements
+          const otpInputs = document.querySelectorAll('.otp-input');
+    
+          // Loop through the OTP input elements and set their values
+          otpInputs.forEach((input, index) => {
+            if (codeCharacters[index]) {
+              // Set the uppercase value for each input
+              input.value = codeCharacters[index].toUpperCase();
+    
+              // If the current input is filled and there is a next input, focus on the next one
+              if (input.value.length === input.maxLength && index < otpInputs.length - 1) {
+                otpInputs[index + 1].focus();
+              }
+            }
+          });
+        }
+      };
+    
+      // Call the function when the page is loaded
+      setInputValuesFromQuery();
+
+
+      const otpInputs = document.querySelectorAll('.otp-input');
+      const otpCount = otpInputs.length;
+
+      otpInputs.forEach((input, index) => {
+        input.addEventListener('input', function() {
+          this.value = this.value.toUpperCase();
+          
+          // If the current input is filled and there is a next input, focus on the next one
+          if (this.value.length === this.maxLength && index < otpCount - 1) {
+            otpInputs[index + 1].focus();
+          }
+        });
+      });
+
+      document.getElementById('verify-code').addEventListener('click', function() {
+        const otpValues = Array.from(otpInputs).map(input => input.value);
+
+        // Ensure that the values are valid alphanumeric characters
+        const isValidAlphanumeric = (value) => /^[A-Z0-9]$/.test(value);
+
+        if (otpValues.some(value => !isValidAlphanumeric(value))) {
+          console.error('Invalid Alphanumeric characters');
+          return;
+        }
+    
+        console.log('Received OTPs:', otpValues);
+    
+        // Create a FormData object to handle the form data
+        const formData = new FormData();
+        otpValues.forEach((value, index) => formData.append(`otp${index + 1}`, value));
+    
+        console.log('Form Data:', formData);  // Add this line for additional logging
+    
+        // Use the Fetch API to submit the form data
+        fetch('/verify', {
+          method: 'POST',
+          body: formData,
+        })
+        .then(response => response.json())  // Parse the JSON response
+        .then(data => {
+          // Handle the response data as needed
+          console.log('Verification Result:', data);
+    
+          // Update the DOM with the verification result
+          document.getElementById('verificationResult').innerText = 'Verification Result: ' + data.verificationResult;
+        })
+        .catch(error => console.error('Error:', error));
+      });
+    </script>
+    
+    
+  </body>
+</html>
