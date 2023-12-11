@@ -149,13 +149,8 @@
         .then(data => {
           // Handle the response data as needed
           console.log('Verification Result:', data);
-          if (data.verificationResult === false) {
+          if (data.verificationResult === 'true') {
             // Hide the main wrapper and show the video
-            
-            document.getElementById('verificationResult').innerText = 'Verification Result: ' + 'video not playing';
-          } else {
-            // Update the DOM with the verification result
-           
             console.log('Before hiding elements');
             document.getElementById('mainWrapper').style.display = 'none';
             document.getElementById('verificationVideo').style.display = 'block';
@@ -163,6 +158,13 @@
     
             // Play the video
             document.getElementById('verificationVideo').play();
+            
+            
+          } else {
+            // Update the DOM with the verification result
+            document.getElementById('verificationResult').innerText = 'Verification Result: ' + 'video not playing';
+           
+            
           }
     
           // Update the DOM with the verification result
